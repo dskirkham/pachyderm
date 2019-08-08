@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  local:
+    useBuildkit: true
+  artifacts:
+    - image: gcr.io/kyle-dev-237522/pach
+      context: .
+      docker:
+        dockerfile: Dockerfile.pachd
+    - image: gcr.io/kyle-dev-237522/worker
+      context: .
+      docker:
+        dockerfile: Dockerfile.worker
