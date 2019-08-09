@@ -12,5 +12,7 @@ steps:
           '--listen-client-urls=http://0.0.0.0:2379',
           '--advertise-client-urls=http://0.0.0.0:2379'
         ]
+- name: jwilder/dockerize:0.6.1
+  args: ['dockerize', '-timeout=60s', '-wait=tcp://etcd:32379']
 - name: golang:1.12.5
   args: [ 'bash', './etc/testing/pfs_server.sh' ]
