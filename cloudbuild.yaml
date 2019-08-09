@@ -4,7 +4,7 @@ steps:
             '-d',
             '--rm',
             '--publish=32379:2379',
-            '--ulimit nofile=2048',
+            '--ulimit=nofile=2048',
             '--name=etcd',
             '--network=cloudbuild',
             'quay.io/coreos/etcd:v3.3.5',
