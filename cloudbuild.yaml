@@ -1,14 +1,16 @@
 steps:
-  - name: gcr.io/cloud-builders/docker
-    args: [ 'run',
-            '-d',
-            '--rm',
-            '--publish=32379:2379',
-            '--ulimit=nofile=2048',
-            '--name=etcd',
-            '--network=cloudbuild',
-            'quay.io/coreos/etcd:v3.3.5',
-            'etcd',
-            '--listen-client-urls=http://0.0.0.0:2379',
-            '--advertise-client-urls=http://0.0.0.0:2379'
-          ]
+- name: gcr.io/cloud-builders/docker
+  args: [ 'run',
+          '-d',
+          '--rm',
+          '--publish=32379:2379',
+          '--ulimit=nofile=2048',
+          '--name=etcd',
+          '--network=cloudbuild',
+          'quay.io/coreos/etcd:v3.3.5',
+          'etcd',
+          '--listen-client-urls=http://0.0.0.0:2379',
+          '--advertise-client-urls=http://0.0.0.0:2379'
+        ]
+- name: golang:1.12.5
+  args: [ './etc/testing/pfs_server.sh' ]
