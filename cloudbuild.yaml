@@ -13,4 +13,4 @@ steps:
           '--advertise-client-urls=http://0.0.0.0:2379'
         ]
 - name: golang:1.12.5
-  args: [ './etc/testing/pfs_server.sh' ]
+  args: [ 'bash', './etc/testing/pfs_server.sh' ]
