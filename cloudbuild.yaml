@@ -1,18 +1,22 @@
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: [ 'run',
-          '-d',
-          '--rm',
-          '--publish=32379:2379',
-          '--ulimit=nofile=2048',
-          '--name=etcd',
-          '--network=cloudbuild',
-          'quay.io/coreos/etcd:v3.3.5',
-          'etcd',
-          '--listen-client-urls=http://0.0.0.0:2379',
-          '--advertise-client-urls=http://0.0.0.0:2379'
-        ]
+  args: ['run', '-d', '--name=postgres', '--network=cloudbuild', 'postgres']
 - name: jwilder/dockerize:0.6.1
-  args: ['dockerize', '-timeout=60s', '-wait=http://etcd:32379/health']
-- name: golang:1.12.5
-  args: [ 'bash', './etc/testing/pfs_server.sh' ]
+  args: ['dockerize', '-timeout=60s', '-wait=tcp://postgres:5432']
+#- name: gcr.io/cloud-builders/docker
+#  args: [ 'run',
+#          '-d',
+#          '--rm',
+#          '--publish=32379:2379',
+#          '--ulimit=nofile=2048',
+#          '--name=etcd',
+#          '--network=cloudbuild',
+#          'quay.io/coreos/etcd:v3.3.5',
+#          'etcd',
+#          '--listen-client-urls=http://0.0.0.0:2379',
+#          '--advertise-client-urls=http://0.0.0.0:2379'
+#        ]
+#- name: jwilder/dockerize:0.6.1
+#  args: ['dockerize', '-timeout=60s', '-wait=http://etcd:32379/health']
+#- name: golang:1.12.5
+#  args: [ 'bash', './etc/testing/pfs_server.sh' ]
