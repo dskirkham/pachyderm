@@ -4,11 +4,7 @@ build:
   local:
     useBuildkit: true
   artifacts:
-    - image: gcr.io/kyle-dev-237522/pach
+    - image: pach
       context: .
       docker:
         dockerfile: Dockerfile.pachd
-    - image: gcr.io/kyle-dev-237522/worker
-      context: .
-      docker:
-        dockerfile: Dockerfile.worker
