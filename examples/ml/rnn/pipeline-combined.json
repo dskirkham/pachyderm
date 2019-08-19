@@ -12,6 +12,13 @@
   "parallelism_spec": {
        "constant" : 1
   },
+  "resource_limits": {
+    "memory": "1024M",
+    "gpu": {
+      "type": "nvidia.com/gpu",
+      "number": 1
+    }
+  },
   "input": {
     "pfs": {
       "repo": "GoT_scripts",

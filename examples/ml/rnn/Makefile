@@ -44,7 +44,7 @@ docker-build:
 	# have to use rsync instead of cp so that we can skip the "doc"
 	# directory which contains this path itself
 	rsync -av ../../../ pachyderm --exclude doc
-	docker build -t tensor_flow_rnn_got .
+	nvidia-docker build -t gcr.io/aerobic-optics-216408/tensor_flow_rnn_got:v1.2.6-gpu .
 	rm -rf pachyderm
 
 setup: docker-build input-data
@@ -54,4 +54,4 @@ run: verify-pachctl docker-build
 
 clean: verify-pachctl
 	pachctl delete pipeline -f pipeline.json
-	pachctl delete repo GoT_scripts 
+	pachctl delete repo GoT_scripts

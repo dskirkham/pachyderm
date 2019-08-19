@@ -3,14 +3,18 @@
     "name": "GoT_train"
   },
   "transform": {
-    "image": "<yourregistry>/tensorflow_0_10_rnn_got",
+    "image": "gcr.io/aerobic-optics-216408/tensor_flow_rnn_got:v1.2.6-gpu",
     "cmd": [ "sh" ],
     "stdin": [
-      "cd /code && python ptb_word_lm.py --data_path=/pfs/GoT_scripts/ --model=test --model_path_prefix=/pfs/out/"
+      "cd /code && python ptb_word_lm.py --data_path=/pfs/GoT_scripts/data/data/ --model=small --model_path_prefix=/pfs/out/"
     ]
   },
-  "parallelism_spec": {
-       "constant" : 1
+  "resource_limits": {
+    "memory": "1000M",
+    "gpu": {
+      "type": "nvidia.com/gpu",
+      "number": 1
+    }
   },
   "input": {
     "pfs": {

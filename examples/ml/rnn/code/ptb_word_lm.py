@@ -75,7 +75,7 @@ flags.DEFINE_string(
     "model", "small",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", None, "data_path")
-flags.DEFINE_string("generate", False, "Whether or not to emit new sentence")
+flags.DEFINE_string("generate", None, "Whether or not to emit new sentence")
 flags.DEFINE_string("model_path_prefix", None, "model_path_prefix")
 FLAGS = flags.FLAGS
 
@@ -225,7 +225,7 @@ class MediumConfig(object):
   max_max_epoch = 39
   keep_prob = 0.5
   lr_decay = 0.8
-  batch_size = 20
+  batch_size = 10
   vocab_size = 10000
 
 
@@ -396,16 +396,16 @@ def generate(word_to_id, id_to_word):
           if count > 1000:
               break
 
-      
+
       print(" ".join(sentence))
 
 def token_to_string(token):
     ts = {
             "<eos>" : ".",
             "<question>" : "?",
-            "<exclamation>" : "!", 
-            "<open-brack>" : "[", 
-            "<close-brack>" : "]", 
+            "<exclamation>" : "!",
+            "<open-brack>" : "[",
+            "<close-brack>" : "]",
             "<ellipsis>" : "...",
             "<boquote>" : "'",
             "<eoquote>" : "'",
@@ -433,5 +433,3 @@ def non_uniform_randomly_sample(p):
 
 if __name__ == "__main__":
   tf.app.run()
-
-
