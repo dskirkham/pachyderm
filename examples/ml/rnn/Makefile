@@ -44,7 +44,7 @@ docker-build:
 	# have to use rsync instead of cp so that we can skip the "doc"
 	# directory which contains this path itself
 	rsync -av ../../../ pachyderm --exclude doc
-	nvidia-docker build -t gcr.io/aerobic-optics-216408/tensor_flow_rnn_got:v1.2.6-gpu .
+	nvidia-docker build -t gcr.io/<project-name>/tensor_flow_rnn_got:v1.2.6-gpu .
 	rm -rf pachyderm
 
 setup: docker-build input-data

@@ -3,7 +3,7 @@
     "name": "GoT_train"
   },
   "transform": {
-    "image": "gcr.io/aerobic-optics-216408/tensor_flow_rnn_got:v1.2.6-gpu",
+    "image": "gcr.io/<project-name>/tensor_flow_rnn_got:v1.2.6-gpu",
     "cmd": [ "sh" ],
     "stdin": [
       "cd /code && python ptb_word_lm.py --data_path=/pfs/GoT_scripts/data/data/ --model=small --model_path_prefix=/pfs/out/"
